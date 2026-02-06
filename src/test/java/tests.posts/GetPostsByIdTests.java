@@ -1,16 +1,18 @@
+package tests.posts;
+
+import base.tests.components.BaseApiTest;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.Test;
+import test.enums.EndpointPath;
 
 public class GetPostsByIdTests extends BaseApiTest {
-
-    private final String ENDPOINT_PATH = "/posts";
 
     @Test
     public void  getPostById(){
         RestAssured.given()
                 .pathParam("postId", 1)
                 .when()
-                .get(ENDPOINT_PATH + "/{postId}")
+                .get(BaseApiTest.endpointPaths.get(EndpointPath.Posts) + "/{postId}")
                 .prettyPeek()
                 .then()
                 .statusCode(200);
@@ -21,7 +23,7 @@ public class GetPostsByIdTests extends BaseApiTest {
         RestAssured.given()
                 .pathParam("postId", 9999)
                 .when()
-                .get(ENDPOINT_PATH + "/{postId}")
+                .get(BaseApiTest.endpointPaths.get(EndpointPath.Posts) + "/{postId}")
                 .then()
                 .statusCode(404);
     }

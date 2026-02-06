@@ -1,14 +1,16 @@
+package test.comments;
+
+import base.tests.components.BaseApiTest;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.Test;
+import test.enums.EndpointPath;
 
-import java.io.Console;
-
-public class GetPostsCommentsTests extends BaseApiTest  {
+public class GetPostsCommentsTests extends BaseApiTest {
 
     @Test
     public void getPostsComment(){
         RestAssured.given()
-                .basePath("/comments")
+                .basePath(BaseApiTest.endpointPaths.get(EndpointPath.Comments))
                 .queryParam("postId", 1)
                 .when()
                 .get()
